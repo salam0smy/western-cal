@@ -1,0 +1,42 @@
+
+
+ <div ng-init="init()" class="modal-dialog">
+        <div class="modal-header" ng-style="{'backgroundColor':modalBg}">
+            <h3>Choose your Calendar</h3>
+        </div>
+        <div class="modal-body">
+        <div class="row">
+        <!-- start row -->
+        <div class="col-sm-8">
+            <select class="form-control btn btn-primary dropdown-toggle" 
+            ng-options="cal.summary for cal in userCals" 
+            ng-model="selectedCal" ng-change="onSelect(selectedCal)">
+             <option value="">-- choose Calendar --</option>
+        </select>
+   </div>
+   <div class="col-sm-1">
+   <button tooltip="New Calendar" 
+
+   class="btn btn-default pull-right"
+   ng-click="addClick()">
+   <i class="glyphicon" 
+   ng-class="{'glyphicon-plus-sign': !newcal, 'glyphicon-minus-sign': newcal}">
+   </i></button>
+   </div>
+   </div>
+   <!-- end row -->
+    <div ng-show="newcal" class="row">
+      <div class="input-group col-sm-9">
+        <span class="input-group-addon">Calendar Name: </span>
+        <input type="text" class="form-control" placeholder="calendar Name" ng-model="title.val">
+    </div>
+    </div>
+        </div>
+
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+</div>
+

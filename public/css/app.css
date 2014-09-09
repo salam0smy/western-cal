@@ -1,0 +1,119 @@
+/* app css stylesheet */
+
+
+.panel.search-panel {
+  border-radius: 1px;
+}
+
+.well.sec-well {
+   background-color: #D2E8F6;
+   border-radius:10px;
+   margin-top:10px;
+   margin-left:20px;
+   padding: 2px;
+   margin-bottom: 10px;
+   
+}
+.well.sec-well:hover {
+   background-color: #9FC2DB;
+}
+.well.sec-well.primary-well{
+	background-color: #5C92B7;
+	color:#ffffff;
+}
+.accordion-icon {
+	margin-top:7px;
+	margin-left:10px;
+}
+.accordion-list-icon {
+	margin-top:3px;
+	margin-left:8px;
+}
+.primary-small-text {
+	color: #2A5C7F;
+}
+.acc-heading {
+	font-size: 14px;
+}
+.btn.btn-export {
+	margin-right:90px;
+}
+
+.row.user-auth {
+  margin-right:40px; 
+  margin-top:40px;
+  margin-bottom:10px;
+  float:right;
+}
+.search-panel{
+  margin-top:15px;
+}
+.sections-area{
+    margin-bottom:15px;
+}
+.btn.btn-lg {
+  margin: 10px;
+}
+.m-toaster{
+  margin-top: 50px;
+}
+.nav.nav-tabs.nav-inverse{
+  background-color: #6A6A95;
+}
+.mnavbar-text{
+  padding: 0px;
+  color: #DCF0F7;
+}
+img.navbar-brand {
+    max-width: 100%;
+    height: auto;
+}
+.img-circle{
+  float:left;
+  margin-right: 15px;
+}
+.btn.btn-sm.btn-remove{
+  padding: 0px;
+  border-radius:15px;
+}
+.panel-footer.m-footer {
+  padding: 8px 8px;
+  
+}
+.auth-pic {
+  margin-right: 0px;
+}
+.login-btn {
+  margin-top: 40px;
+  float: right;
+  margin-right: 40px;
+
+}
+@media only screen and (max-width: 600px) {
+  /* styles for narrow screens */
+  img.navbar-brand {
+    max-width: 50%;
+    height: auto;
+}
+.login-btn, .user-auth.login-btn  {
+  margin-top: 20px;
+  margin-right: 10px;
+}
+  .row.user-auth {
+    margin-right: 8px;
+  margin-top:10px;
+  margin-bottom:10px;
+  float:right;
+  }
+
+  .row.user-auth{
+    max-width: 50%;
+  }
+}
+@media only screen and (max-width: 900px) {
+  /* styles for narrow screens */
+  .row.user-auth {
+  
+  
+}
+}
