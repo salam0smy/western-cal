@@ -1,0 +1,31 @@
+{
+  "name": "angular-spinner",
+  "version": "0.3.1",
+  "description": "Angular directive to show an animated spinner (using spin.js)",
+  "main": "./angular-spinner.js",
+  "author": "Uri Shaked",
+  "license": "MIT",
+  "homepage": "https://github.com/urish/angular-spinner",
+  "ignore": [],
+  "dependencies": {
+    "angular": ">=1.0.0 <1.3.0",
+    "spin.js": "~1.3.0"
+  },
+  "devDependencies": {
+    "angular-mocks": ">=1.0.0 <1.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/urish/angular-spinner.git"
+  },
+  "_release": "0.3.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.1",
+    "commit": "983e51d93f69b974882dcc4f68778f7622a4e864"
+  },
+  "_source": "git://github.com/urish/angular-spinner.git",
+  "_target": "~0.3.1",
+  "_originalSource": "angular-spinner",
+  "_direct": true
+}
