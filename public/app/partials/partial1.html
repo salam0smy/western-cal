@@ -1,0 +1,238 @@
+<div class="main-body">
+	<div class="search-area">
+		<div class="table-responsive">
+			<!-- steps  -->
+			<table border="0" class="table">
+				<tr>
+					<td>
+					<img src="/app/img/steps1.png"/>
+					</td>
+					<td>
+						<img src="/app/img/steps2.png"/>
+					</td>
+					<td>
+						<img src="/app/img/steps3.png"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="panel panel-default search-panel">
+		    <div class="panel-heading">
+				<div class="input-group">
+					<!-- search box, dropdpwn menu and details btn -->
+				  <span class="input-group-addon">Search</span>
+				  <input type="text" 
+				  id="searchI"
+				  class="form-control course-search" 
+				  ng-model="selectedCourseTitle"
+				  typeahead-wait-ms="900" 
+				  typeahead="title for title in getTypeahead($viewValue)" 
+				  typeahead-loading="loadingCourses"
+				  typeahead-on-select="typeaheadOnSelectTitle(selectedCourseTitle)">
+				  <!-- details button -->
+				  <span class="input-group-btn">
+				         <button class="btn btn-primary" 
+						 type="button" 
+						 ng-disabled="!courseDetailsFlag"
+						 ng-click="toggleShowDetails()">
+							 	{{detailsText}}
+							<i class="glyphicon glyphicon-info-sign"></i></button>
+				       </span>
+				</div>
+				 <div class="clearfix"></div>
+		    </div>
+		     <div class="panel-body">
+				 <!-- course Details -->
+ 				<div class="container-fluid animate-show " ng-show="showDetailsFlag">
+ 					<div class="col-sm-8">
+ 						<dl>
+ 							<dt>Title:</dt><dd> {{courseDetails.title}}</dd>
+ 							<dt>Description:</dt><dd> {{courseDetails.description}}</dd>
+ 							<dt>Extra:</dt><dd> {{courseDetails.extra}}</dd>
+					
+ 						</dl>
+ 					</div>
+ 					<div class="col-sm-4">
+ 						<dl>
+ 							<dt>Prerequisite:</dt><dd> {{courseDetails.prerequisite}}</dd>
+ 							<dt>Antirequisite:</dt><dd> {{courseDetails.antirequisite}}</dd>
+ 							<dt>Corequisite:</dt><dd> {{courseDetails.corequisite}}</dd>
+ 							<dt>cor-prequisite:</dt><dd> {{courseDetails.pre_or_corequisite}}</dd>
+ 						</dl>
+ 					</div>
+ 				</div>
+		     </div>
+		</div>
+		
+	</div>
+	<div class="sections-area">
+	<div>
+		<span us-spinner spinner-key="spinner-section"></span>
+	</div>
+	
+		<!-- loop on courses sections-->
+		<accordion close-others="true">
+			<div ng-repeat = "courseS in courseSections" class="repeated-item">
+			<!-- represent each course in a panel-->
+		    <accordion-group ng-init="isopen=true; courseS.isPin=false" is-open="isopen">
+			<accordion-heading>
+			
+			            {{courseS.title}} 
+						<i class="pull-right glyphicon accordion-icon" ng-class="{'glyphicon-chevron-down': isopen, 'glyphicon-chevron-right': !isopen}"></i>
+						
+						<button 
+						class="pull-right btn btn-sm btn-success" 
+						type="button" 
+						ng-click="addCourseSections(courseS ,courseDetails, $event)"
+						>
+						<i class="glyphicon glyphicon-plus"></i>
+						Add</button>
+						<button 
+						class="pull-right btn btn-sm" 
+						ng-click="pinClick(courseS, courseDetails,$event)"
+						ng-class="{'btn-success':courseS.isPin}">
+						<i class="glyphicon glyphicon-pushpin" popover="Keep this course here" 
+						popover-append-to-body="true"
+						popover-trigger="mouseenter" ></i>
+						</button>
+						 <div class="clearfix"></div>
+			        </accordion-heading>
+					<!-- display course classes-->
+					
+					<div class="container-fluid repeated-item" ng-repeat="clss in courseS.classes">
+						<div class="col-md-2 well sec-well" 
+						ng-init="clss.click=false" 
+						ng-click="sectionClick(courseS, clss, $event)"
+						 ng-class="{'primary-well':clss.click}"
+						>
+						<i class="pull-right glyphicon glyphicon-info-sign"
+						ng-show="clss.notes!=''"
+						popover="{{clss.notes}}" 
+						popover-append-to-body="true"
+						popover-trigger="mouseenter" 
+						style="margin:4px;"></i>
+							<h5 class="text-center primary-text">{{clss|displayComponentSectionFilter}} <small class="primary-small-text">{{clss.location}}</small></h5>
+							<h4 class="text-center primary-text">{{clss.days}} <small class="primary-small-text">{{clss|displayDaysTimeFilter}}</small></h4>
+							<h5 class="text-center primary-text">{{clss.instructor}} <small class="primary-small-text">{{clss.full}}</small></h5>
+						</div>
+					</div>
+					
+		       </accordion-group>
+			
+			</div>
+		</accordion>
+	</div>
+	<div class="scheduler-area">
+		<div class="row">
+		         <div class="col-sm-4">
+		         <div>
+		         	<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}
+		         	<button class="btn btn-success brn-sm" ng-click="onRemoveTabYesClick()">Yes</button>
+		         	</alert>
+		         </div>
+					 <!-- display list of courses -->
+					 <div class="panel panel-info search-panel">
+					   <div class="panel-heading">
+					     <h3 class="panel-title">Courses List</h3>
+					   </div>
+					   <div class="panel-body">
+						   <!-- populate courses lists in tabs and accourdions -->
+						   <tabset justified="false">
+
+						       <tab ng-repeat="list in coursesLists" select="onTabActive(list, $index)" deselect="onTabDeactive(list, $index)" active="list.active" class="repeated-item">
+						       <tab-heading>
+						       <button ng-show="coursesLists.length>1" 
+						       		class="btn-default btn btn-sm btn-remove animate-show"
+						       		ng-click="removeTabClick(list, $index)">
+						       		<i ng-class="{'glyphicon glyphicon-remove': coursesLists.length>1}"></i>
+						       </button>
+						       	{{$index+1}}
+						       </tab-heading>
+								   <!-- loop on sections for accordions -->
+								   <accordion class="search-panel">
+									   <accordion-group is-open="cour.sections.isopen" ng-repeat="cour in list.courses" class="repeated-item">
+									   <accordion-heading class="">
+									   <span class="acc-heading">
+									    {{cour.details.title|courseTitleFilter}} 
+									</span>
+									
+									   <i class="pull-right glyphicon accordion-list-icon" 
+									   ng-class="{'glyphicon-chevron-down': cour.sections.isopen,
+									    'glyphicon-chevron-right': !cour.sections.isopen}">
+								   </i>
+								<button popover="Edit" 
+								popover-placement="top" 
+								popover-trigger="mouseenter" 
+								class="btn btn-default btn-sm pull-right"
+								ng-click="editSectionClick(cour, $event)">
+									<i class="pull-right glyphicon glyphicon-edit"></i>
+								</button>
+								<button popover="Remove" 
+								popover-placement="top" 
+								popover-trigger="mouseenter" 
+								class="btn btn-default btn-sm pull-right"
+								ng-click="removeSectionClick(cour, $event)">
+									<i class="pull-right glyphicon glyphicon-remove"></i>
+								</button>
+	  						 <div class="clearfix"></div>
+							   
+							   </accordion-heading>
+									   <ul class="list-group">
+									     <li ng-show="clss.click" ng-repeat="clss in cour.sections.classes" class="list-group-item repeated-item animate-show">{{clss|dayClassFilter}}</li>
+
+									   </ul>
+								   </accordion-group>
+								   </accordion>
+								   
+								   </tab>
+								    <tab ng-click="newTapClick($event)"><tab-heading>
+     						  			 <i class="glyphicon glyphicon-plus"></i>
+     								 </tab-heading>
+     								 </tab>
+						     </tabset>
+						
+					   </div>
+					   <div class="panel-footer m-footer">
+					   		<div class="btn-group">
+<button type="button" class="btn btn-success" ng-click="exportClick()">
+	Export
+<i class="glyphicon glyphicon-export"></i>
+</button>
+
+<button type="button" class="btn btn-success" ng-click="printDiv('printable')">
+	Print
+<i class="glyphicon glyphicon-print"></i>
+</button>
+<button type="button" class="btn btn-success" ng-click="clickDownload()">
+	Download
+<i class="glyphicon glyphicon-download-alt"></i>
+</button>
+<button type="button" class="btn btn-success" ng-click="clickSave()">
+	Save
+<i class="glyphicon glyphicon-cloud-upload"></i>
+</button>
+</div>
+					   </div>
+					 </div>
+					 
+		         </div>
+		         <div class="col-sm-8" id="printable">
+		  
+					 <!-- display calendar -->
+					 <div ui-calendar="calendarOptions" ng-model="eventSources" calendar="myCalendar"></div>
+					 
+		         </div>
+		     </div>
+	</div>
+</div>
+
+<div ng-controller="ExportModalCtrl">
+		<script type="html/ng-template" id="app/partials/export-modal.html">
+		</script>	
+</div>
+
+
+<div ng-controller="ModalConflictCtrl">
+		<script type="html/ng-template" id="app/partials/conflict-modal.html">
+		</script>		
+</div>

@@ -1,0 +1,35 @@
+<div class="modal-header">
+<h2>Course Conflict <small>What would you like to do?</small></h2>
+</div>
+<div class="modal-body">
+	<div class="row">
+	<!-- first Col choose a corequisite-->
+	
+		<div class="well col-xs-6 col-sm-4" ng-show="coreq">
+			<h4>Replace with Corequisite: </h4>
+			<p>{{coreq}}</p>
+		</div>
+	<!-- second Col print conflict form -->
+		<div class="well col-xs-6 col-sm-4" ng-class="{'col-sm-offset-1':!coreq}">
+			<h4>Print Conflict form<small>Have course instructors to sign the form</small></h4>
+			<button class="btn btn-primary btn-lg" ng-click="printConflictClick()">Print
+			<i class="glyphicon glyphicon-print"></i>
+			</button>
+		</div>
+	<!-- third Col ignore conflict-->
+		<div class="well col-xs-6 col-sm-4" ng-class="{'col-sm-offset-1':!coreq}">
+			<h4>Ignore Conflict <small>Proceed normally</small></h4>
+			<button class="btn btn-success btn-lg" ng-click="ignoreClick()">Ignore
+			<i class="glyphicon glyphicon-play-circle"></i>
+			</button>
+			<hr>
+			<h5>Create a new list and add it</h5>
+			<button class="btn btn-warning btn-lg" ng-click="newListClick()">New List
+			<i class="glyphicon glyphicon-new-window"></i>
+			</button>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
