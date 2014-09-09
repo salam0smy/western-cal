@@ -9,6 +9,12 @@ var gcal = require('google-calendar');
 var USER = process.env.MASTER_USERNAME;
 var PASS = process.env.MASTER_PASSWORD;
 
+var Course = require('./models/Course.js');
+var Sec = require('./models/Section.js');
+var CoursesList = require('./models/CoursesList.js');
+var courseWebLoader = require('./courseLoader.js'); 
+var CoursesScheduleList = require('./models/CoursesScheduleList.js');
+
 var app = express();
 var auth = express.basicAuth(USER, PASS);
 // connect to the database
