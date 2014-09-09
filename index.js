@@ -1,7 +1,9 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-
+var USER = process.env.MASTER_USERNAME;
+var PASS = process.env.MASTER_PASSWORD;
+var auth = express.basicAuth(USER, PASS);
 // connect to the database
 var db = mongoose.connect(process.env.MONGOLAB_URI);
 
