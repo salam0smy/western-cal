@@ -1,5 +1,5 @@
 {
-  "name": "node-js-getting-started",
+  "name": "nWesternCal",
   "version": "0.1.0",
   "description": "A sample Node.js app using Express 4",
   "main": "index.js",
@@ -21,9 +21,6 @@
     "heroku",
     "express"
   ],
-  "author": "Mark Pundsack",
-  "contributors": [
-    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
-  ],
+  "author": "Salam Alyahya",
   "license": "MIT"
 }
