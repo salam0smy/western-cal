@@ -1,36 +1,55 @@
-# node-js-getting-started
+# Western-cal app
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+WesternCal is a clone of Angular-seed
+for more information about Angular-seed
+https://github.com/angular/angular-seed
 
-This application support the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
+## installation
+- in /westernCalApp directory
 
-## Running Locally
+ - install MongoDB
+ 	http://www.mongodb.org/downloads
 
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
+ - install Node.js
+ 	http://nodejs.org/
 
-```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
+ - install dependencies
+ 	npm install
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
 
-## Deploying to Heroku
+ ## Running the application
 
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
+ in terminal
+ 	start the database
+ 		mongod
 
-## Documentation
+ 	run the server
+ 		node server.js
 
-For more information about using Node.js on Heroku, see these Dev Center articles:
+ 	access the application in the browser via
+ 		http://localhost:8080/
 
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+ 		to initialize the database visit -- only do this once to avoide duplicate data
+ 		http://localhost:8080/updatemap
+ 			user: ADMIN
+ 			pass: ADMIN321
+
+
+ ## trouble shooting
+ - if you run
+ 		npm install
+	and have trouble running the server, manually install the dependecies
+		npm install PCKG_NAME
+
+
+
+## running Tests
+
+-first install Karma
+	sudo npm install -g karma
+
+-start the script
+	scripts/test.sh (on windows: scripts\test.bat)
+
+- test configueration can be found in 
+	config/karma.conf.js
